@@ -1,2 +1,1 @@
 rightmove-webscraper @ git+https://github.com/cwilko/rightmove_webscraper.py.git
-marketinsights-dbschema @ git+https://github.com/cwilko/marketinsights-dbschema.git

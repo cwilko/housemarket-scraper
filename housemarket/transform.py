@@ -1,31 +1,29 @@
 import re
 import datetime
 
-from marketinsights.dbschema import House
-
 
 class PropertyIndex:
     def __init__(self, propertyData, region):
         self.region = region
-        self.index = propertyData.apply(self.createPropertyDetails, axis=1).tolist()
+        self.index = propertyData.apply(self.createPropertyDict, axis=1).tolist()
 
-    def getIndex(self):
-        return [details.get() for details in self.index]
+    def getDict(self):
+        return {v["id"]: v for v in self.index}
 
-    def createPropertyDetails(self, x):
-        return House(
-            id=self.parseId(x["url"]),
-            date=datetime.date.today().strftime("%Y-%m-%d"),
-            location=x["address"],
-            region=self.region,
-            type=x["type"].replace("for sale", ""),
-            price=self.parsePrice(x["price"]),
-            bedrooms=self.parseBedrooms(x["number_bedrooms"]),
-            agent=self.parseAgent(x["agent_url"]),
-            description=x["description"],
-            sold="FREE",
-            datesold=datetime.date.today().strftime("%Y-%m-%d"),
-        )
+    def createPropertyDict(self, x):
+        return {
+            "id": str(self.parseId(x["url"])),
+            "created_on": datetime.date.today().strftime("%Y-%m-%d"),
+            "location": x["address"],
+            "region": self.region,
+            "type": x["type"].replace("for sale", ""),
+            "price": self.parsePrice(x["price"]),
+            "bedrooms": self.parseBedrooms(x["number_bedrooms"]),
+            "agent": self.parseAgent(x["agent_url"]),
+            "description": x["description"],
+            "sold": "FREE",
+            "sold_on": datetime.date.today().strftime("%Y-%m-%d"),
+        }
 
     def parseRegion(self, region):
         if str(region) == "nan":
