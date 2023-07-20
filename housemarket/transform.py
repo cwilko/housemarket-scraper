@@ -1,48 +1,7 @@
 import re
 import datetime
 
-
-class PropertyDetails:
-    def __init__(
-        self,
-        id,
-        date,
-        location,
-        region,
-        type,
-        price,
-        bedrooms,
-        agent,
-        description,
-        sold,
-        datesold,
-    ):
-        self.id = id
-        self.date = date
-        self.location = location
-        self.region = region
-        self.type = type
-        self.price = price
-        self.bedrooms = bedrooms
-        self.agent = agent
-        self.description = description
-        self.sold = sold
-        self.datesold = datesold
-
-    def get(self):
-        return (
-            self.id,
-            self.date,
-            self.location,
-            self.region,
-            self.type,
-            self.price,
-            self.bedrooms,
-            self.agent,
-            self.description,
-            self.sold,
-            self.datesold,
-        )
+from marketinsights.dbschema import House
 
 
 class PropertyIndex:
@@ -54,7 +13,7 @@ class PropertyIndex:
         return [details.get() for details in self.index]
 
     def createPropertyDetails(self, x):
-        return PropertyDetails(
+        return House(
             id=self.parseId(x["url"]),
             date=datetime.date.today().strftime("%Y-%m-%d"),
             location=x["address"],
