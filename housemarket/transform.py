@@ -46,7 +46,8 @@ class PropertyDetails:
 
 
 class PropertyIndex:
-    def __init__(self, propertyData):
+    def __init__(self, propertyData, region):
+        self.region = region
         self.index = propertyData.apply(self.createPropertyDetails, axis=1).tolist()
 
     def getIndex(self):
@@ -57,7 +58,7 @@ class PropertyIndex:
             id=self.parseId(x["url"]),
             date=datetime.date.today().strftime("%Y-%m-%d"),
             location=x["address"],
-            region=self.parseRegion(x["postcode"]),
+            region=self.region,
             type=x["type"].replace("for sale", ""),
             price=self.parsePrice(x["price"]),
             bedrooms=self.parseBedrooms(x["number_bedrooms"]),

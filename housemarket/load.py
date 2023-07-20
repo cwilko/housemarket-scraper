@@ -1,4 +1,5 @@
 import psycopg2
+import traceback
 
 
 class HouseDatabase:
@@ -48,6 +49,7 @@ class HouseDatabase:
             print(propertyDetails)
         except Exception as e:
             print("Duplicate Entry")
+            # traceback.print_exc()
 
     def addEntries(self, tableName, propertyIndex):
         sql = (

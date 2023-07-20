@@ -7,6 +7,6 @@ test/data
 .cache/
 **/test-reports
 **/*egg-info
-*.hdf
 *.pkl
 build/
+notebooks
