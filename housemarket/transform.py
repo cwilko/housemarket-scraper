@@ -13,7 +13,6 @@ class PropertyIndex:
     def createPropertyDict(self, x):
         return {
             "id": str(self.parseId(x["url"])),
-            "created_on": datetime.date.today().strftime("%Y-%m-%d"),
             "location": x["address"],
             "region": self.region,
             "type": x["type"].replace("for sale", ""),
@@ -23,7 +22,6 @@ class PropertyIndex:
             "description": x["description"],
             "sold": "FREE",
             "sold_on": datetime.date.today().strftime("%Y-%m-%d"),
-            "updated_on": datetime.date.today().strftime("%Y-%m-%d"),
         }
 
     def parseRegion(self, region):
