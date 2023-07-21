@@ -23,6 +23,7 @@ class PropertyIndex:
             "description": x["description"],
             "sold": "FREE",
             "sold_on": datetime.date.today().strftime("%Y-%m-%d"),
+            "updated_on": datetime.date.today().strftime("%Y-%m-%d"),
         }
 
     def parseRegion(self, region):
