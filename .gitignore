@@ -9,4 +9,4 @@ test/data
 **/*egg-info
 *.pkl
 build/
-notebooks
+notebooks/*
